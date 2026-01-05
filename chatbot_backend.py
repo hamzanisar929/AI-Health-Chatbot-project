@@ -34,13 +34,15 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random
 rf_model = RandomForestClassifier(n_estimators=300, random_state=42)
 gb_model = GradientBoostingClassifier(n_estimators=200, random_state=42)
 
-rf_model.fit(x_train, y_train)
-gb_model.fit(x_train, y_train)
+def initialize_backend():
+    rf_model.fit(x_train, y_train)
+    gb_model.fit(x_train, y_train)
 
-# ---------------- DICTIONARIES ----------------
-severityDictionary = {}
-description_list = {}
-precautionDictionary = {}
+    return {
+        "severity": load_severity(),
+        "description": load_descriptions(),
+        "precaution": load_precautions()
+    }
 symptoms_dict = {symptom: idx for idx, symptom in enumerate(x)}
 
 def load_descriptions():
