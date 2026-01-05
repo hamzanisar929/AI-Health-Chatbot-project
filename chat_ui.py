@@ -2,6 +2,11 @@ import streamlit as st
 import time
 from chatbot_backend import *
 
+backend = initialize_backend()
+severityDictionary = backend["severity"]
+description_list = backend["description"]
+precautionDictionary = backend["precaution"]
+
 def chat_interface():
     st.title("🧠 AI Health Assistant")
 
